@@ -21,11 +21,11 @@
     // Override point for customization after app launch    
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
+    
+    facebook = [[Facebook alloc] initWithAppId:@"196422827058096" andDelegate:self];
 		
 	
 }
-
-- (void)application:didFinishLaunchingWithOptions:
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
