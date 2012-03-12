@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* DirtyMoneyAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1032, 620}}";
+			sepNavSelRange = "{351, 0}";
+			sepNavVisRange = "{0, 500}";
+			sepNavWindowFrame = "{{38, 4}, {1091, 748}}";
+		};
+	};
+	1D3623250D0F684500981E51 /* DirtyMoneyAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1032, 620}}";
+			sepNavSelRange = "{533, 0}";
+			sepNavVisRange = "{0, 723}";
+			sepNavWindowFrame = "{{15, 25}, {1091, 748}}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* DirtyMoney */ = {
+		activeExec = 0;
+		executables = (
+			63B2CD3A12E9038700BF4BCA /* DirtyMoney */,
+		);
+	};
+	28D7ACF60DDB3853001CB0EB /* DirtyMoneyViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {857, 598}}";
+			sepNavSelRange = "{803, 0}";
+			sepNavVisRange = "{284, 757}";
+			sepNavWindowFrame = "{{15, 25}, {1091, 748}}";
+		};
+	};
+	28D7ACF70DDB3853001CB0EB /* DirtyMoneyViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {857, 3380}}";
+			sepNavSelRange = "{3120, 0}";
+			sepNavVisRange = "{2869, 862}";
+			sepNavWindowFrame = "{{15, 25}, {1091, 748}}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecturePreference = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 63B2CD3A12E9038700BF4BCA /* DirtyMoney */;
+		activeSDKPreference = iphonesimulator4.2;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* DirtyMoney */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* DirtyMoney */,
+		);
+		codeSenseManager = 63B2CD4A12E9039000BF4BCA /* Code sense */;
+		executables = (
+			63B2CD3A12E9038700BF4BCA /* DirtyMoney */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXBookmarksDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBookmarksDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					200,
+					200,
+					489,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBookmarksDataSource_LocationID,
+					PBXBookmarksDataSource_NameID,
+					PBXBookmarksDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					567,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					694,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 338352159;
+			PBXWorkspaceStateSaveDate = 338352159;
+		};
+		perUserProjectItems = {
+			63E2AF3F131C6258004AA337 /* PBXTextBookmark */ = 63E2AF3F131C6258004AA337 /* PBXTextBookmark */;
+			63EC73871390633C006CCAA0 /* PBXTextBookmark */ = 63EC73871390633C006CCAA0 /* PBXTextBookmark */;
+			63EC73881390633C006CCAA0 /* PBXTextBookmark */ = 63EC73881390633C006CCAA0 /* PBXTextBookmark */;
+			63EC73891390633C006CCAA0 /* PlistBookmark */ = 63EC73891390633C006CCAA0 /* PlistBookmark */;
+			63EC73A913906526006CCAA0 /* PBXTextBookmark */ = 63EC73A913906526006CCAA0 /* PBXTextBookmark */;
+			63EC73B1139065B2006CCAA0 /* PBXTextBookmark */ = 63EC73B1139065B2006CCAA0 /* PBXTextBookmark */;
+			63FEA2B9142ADF44005BBAE5 /* PBXBookmark */ = 63FEA2B9142ADF44005BBAE5 /* PBXBookmark */;
+			63FEA2BA142ADF44005BBAE5 /* PBXTextBookmark */ = 63FEA2BA142ADF44005BBAE5 /* PBXTextBookmark */;
+			63FEA2BB142ADF44005BBAE5 /* XCBuildMessageTextBookmark */ = 63FEA2BB142ADF44005BBAE5 /* XCBuildMessageTextBookmark */;
+			63FEA2E6142AE429005BBAE5 /* PBXTextBookmark */ = 63FEA2E6142AE429005BBAE5 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 63B2CD4912E9039000BF4BCA /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {857, 323}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 366}";
+		};
+	};
+	32CA4F630368D1EE00C91783 /* DirtyMoney_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {857, 323}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 189}";
+		};
+	};
+	63B2CD3A12E9038700BF4BCA /* DirtyMoney */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = DirtyMoney;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	63B2CD4912E9039000BF4BCA /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	63B2CD4A12E9039000BF4BCA /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	63E2AF3F131C6258004AA337 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 63E2AF40131C6258004AA337 /* UIView.h */;
+		name = "UIView.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 0;
+	};
+	63E2AF40131C6258004AA337 /* UIView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIView.h;
+		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h;
+		sourceTree = "<absolute>";
+	};
+	63EC73871390633C006CCAA0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* DirtyMoney_Prefix.pch */;
+		name = "DirtyMoney_Prefix.pch: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 189;
+		vrLoc = 0;
+	};
+	63EC73881390633C006CCAA0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 366;
+		vrLoc = 0;
+	};
+	63EC73891390633C006CCAA0 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* DirtyMoney-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/kyleluchinski/Desktop/DirtyMoney/DirtyMoney-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	63EC73A913906526006CCAA0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* DirtyMoneyAppDelegate.m */;
+		name = "DirtyMoneyAppDelegate.m: 23";
+		rLen = 0;
+		rLoc = 533;
+		rType = 0;
+		vrLen = 538;
+		vrLoc = 0;
+	};
+	63EC73B1139065B2006CCAA0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* DirtyMoneyAppDelegate.h */;
+		name = "DirtyMoneyAppDelegate.h: 16";
+		rLen = 0;
+		rLoc = 351;
+		rType = 0;
+		vrLen = 500;
+		vrLoc = 0;
+	};
+	63F94E46139F17360017B612 /* brushedBackground.jpg */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 25}, {1091, 748}}";
+		};
+	};
+	63FEA2B9142ADF44005BBAE5 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 63F94E46139F17360017B612 /* brushedBackground.jpg */;
+	};
+	63FEA2BA142ADF44005BBAE5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF60DDB3853001CB0EB /* DirtyMoneyViewController.h */;
+		name = "DirtyMoneyViewController.h: 38";
+		rLen = 0;
+		rLoc = 803;
+		rType = 0;
+		vrLen = 757;
+		vrLoc = 284;
+	};
+	63FEA2BB142ADF44005BBAE5 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Comparison between pointer and integer";
+		fRef = 28D7ACF70DDB3853001CB0EB /* DirtyMoneyViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 127;
+		rType = 1;
+	};
+	63FEA2E6142AE429005BBAE5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* DirtyMoneyViewController.m */;
+		name = "DirtyMoneyViewController.m: 152";
+		rLen = 0;
+		rLoc = 3120;
+		rType = 0;
+		vrLen = 862;
+		vrLoc = 2869;
+	};
+}
