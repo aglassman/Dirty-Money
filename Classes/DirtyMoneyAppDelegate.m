@@ -34,11 +34,11 @@
                                     andDelegate:self];
     
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([defaults objectForKey:@"FBAccessTokenKey"]
-        && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        facebook.expirationDate = [defaults objectForKey:
+    NSUserDefaults *fbDefaults = [NSUserDefaults standardUserDefaults];
+    if ([fbDefaults objectForKey:@"FBAccessTokenKey"]
+        && [fbDefaults objectForKey:@"FBExpirationDateKey"]) {
+        facebook.accessToken = [fbDefaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [fbDefaults objectForKey:
             @"FBExpirationDateKey"];
     }
 		
@@ -58,6 +58,23 @@
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
+    
+}
+
+- (void)fbDidLogout {
+    
+}
+
+- (void)fbSessionInvalidated {
+    
+}
+
+- (void)fbDidExtendToken:(NSString*)accessToken
+               expiresAt:(NSDate*)expiresAt {
+    
+}
+
+- (void)fbDidNotLogin:(BOOL)cancelled {
     
 }
     
