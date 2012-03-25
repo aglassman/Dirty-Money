@@ -11,9 +11,16 @@
 
 @implementation DirtyMoneyAppDelegate
 
-@synthesize window=_window;
-@synthesize viewController=_viewController;
+@synthesize window;
+@synthesize viewController;
 @synthesize facebook;
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    [window addSubview:viewController.view];
+    [window makeKeyAndVisible];
+    
+}
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -54,7 +61,6 @@
     
 }
     
-
 
 - (void)dealloc {
     [viewController release];
