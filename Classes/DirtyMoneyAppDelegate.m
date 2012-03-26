@@ -17,8 +17,8 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-    [window addSubview:viewController.view];
-    [window makeKeyAndVisible];
+   [window addSubview:viewController.view];
+   [window makeKeyAndVisible];
     
 }
 

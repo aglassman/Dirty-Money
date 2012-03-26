@@ -329,6 +329,7 @@ static void *finishedContext = @"finishedContext";
     self.permissions = permissions;
     
     [self authorizeWithFBAppAuth:YES safariAuth:YES];
+    
 }
 
 /**
