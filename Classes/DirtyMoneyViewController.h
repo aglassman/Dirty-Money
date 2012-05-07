@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FBConnect.h"
+
 
 @interface DirtyMoneyViewController : UIViewController {
 
@@ -27,6 +29,8 @@
 	UIButton * copy;	
 	UIButton * clearCount;
 	UIButton * clearBank;
+    UIButton * fbButton;
+    Facebook *facebook;
 
 }
 
@@ -36,6 +40,7 @@
 - (IBAction) bank:(id)sender;
 - (IBAction) clearCount:(id)sender;
 - (IBAction) clearBank:(id)sender;
+- (IBAction) fbButton: (id)sender;
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet UILabel *dollas;
 @property (nonatomic, retain) IBOutlet UITextField *rate2;

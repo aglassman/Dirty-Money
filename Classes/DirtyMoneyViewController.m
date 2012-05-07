@@ -108,6 +108,7 @@
 }	
 
 - (IBAction)stop:(id)sender {
+    
 	
 	[randomMain invalidate];
 	
@@ -123,9 +124,9 @@
 	bank.alpha = 1.0f;
 	
 	copy.enabled = YES;
-	copy.alpha = 1.0f;
+	copy.alpha = 1.0f;    
     
-    
+  
 	
 	if (dollaInt >= 0.01 && dollaInt < 1.5) {
 		NSString *message = [[NSString alloc] initWithFormat:
@@ -184,6 +185,58 @@
 	
 	mainInt = 0;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", 0];
+    
+}
+
+- (IBAction)fbButton:(id)sender {
+    
+    
+    //Login to FB
+    
+    facebook = [[Facebook alloc] initWithAppId:@"196422827058096" andDelegate:self];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"FBAccessTokenKey"] 
+        && [defaults objectForKey:@"FBExpirationDateKey"]) {
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+    if (![facebook isSessionValid]) {
+        NSArray *permissions = [[NSArray alloc] initWithObjects:
+                                @"user_likes", 
+                                @"read_stream",
+                                @"publish_stream",
+                                nil];
+        [facebook authorize:permissions];
+        [permissions release];
+    }
+    
+    
+    
+    //Post to Wall
+    
+    NSString *poopDollas = [[NSString alloc] initWithFormat:
+						 @"I just made $%@ while using the Dirty Money app!",dollas.text];
+    
+    SBJSON *jsonWriter = [[SBJSON new] autorelease];
+    
+    // The action links to be shown with the post in the feed
+    NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      @"Get Started",@"name",@"http://www.facebook.com/pages/Dirty-Money/204640386301048",@"link", nil], nil];
+    NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
+    // Dialog parameters
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Dirty Money", @"name",
+                                   poopDollas, @"caption",
+                                   @"Dirty Money is an app that calcualtes how much money you make while rockin' a deuce at work.  What could be more glorious than that?  See how much you can make!", @"description",
+                                   @"http://www.facebook.com/pages/Dirty-Money/204640386301048", @"link",
+                                   @"http://farm8.staticflickr.com/7185/6999841878_e66a8e00fc_t.jpg", @"picture",
+                                   actionLinksStr, @"actions",
+                                   nil];
+    
+    [facebook dialog:@"feed" andParams:params andDelegate:self];
+    
+    
 }
 
 - (IBAction)clearBank:(id)sender {
@@ -193,22 +246,6 @@
 	floatTot = 0;
 }
 
-					 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
 
 
 
@@ -224,15 +261,6 @@
 	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
 }
 
-
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
