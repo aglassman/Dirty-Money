@@ -14,10 +14,12 @@
 @synthesize window;
 @synthesize viewController;
 @synthesize facebook;
+@synthesize rootController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
    [window addSubview:viewController.view];
+    [window addSubview:rootController.view];
    [window makeKeyAndVisible];
     
     
@@ -59,6 +61,7 @@
 
 - (void)dealloc {
     [viewController release];
+    [rootController release];
     [window release];
     [super dealloc];
 }

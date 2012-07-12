@@ -14,12 +14,14 @@
 
 @interface DirtyMoneyAppDelegate : NSObject <UIApplicationDelegate, FBSessionDelegate> {
     UIWindow *window;
+    UITabBarController *rootController;
     DirtyMoneyViewController *viewController;
     Facebook *facebook;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet DirtyMoneyViewController *viewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *rootController;
 @property (nonatomic, retain) Facebook *facebook;
 
 @end
