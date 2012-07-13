@@ -27,7 +27,6 @@
 	UIButton * stop;
 	UIButton * bank;
 	UIButton * copy;	
-	UIButton * clearCount;
 	UIButton * clearBank;
     UIButton * fbButton;
     Facebook *facebook;
@@ -38,7 +37,6 @@
 - (IBAction) start:(id)sender;
 - (IBAction) stop:(id)sender;
 - (IBAction) bank:(id)sender;
-- (IBAction) clearCount:(id)sender;
 - (IBAction) clearBank:(id)sender;
 - (IBAction) fbButton: (id)sender;
 @property (nonatomic, retain) IBOutlet UILabel *label;

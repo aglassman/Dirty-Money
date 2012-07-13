@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DirtyMoneyViewController.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController {
+
+
+}
 
 @end

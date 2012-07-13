@@ -59,6 +59,9 @@
 	[defaults setFloat:floatTot forKey:@"floatKey"];
 	[defaults setInteger:dollaInt forKey:@"intKey"];
 	[defaults synchronize];
+    
+    mainInt = 0;
+	dollas.text = [NSString stringWithFormat:@"%02.2f", 0.00];
 	
 }
 
@@ -181,12 +184,6 @@
     }
 }
 
-- (IBAction)clearCount:(id)sender {
-	
-	mainInt = 0;
-	dollas.text = [NSString stringWithFormat:@"%02.2f", 0];
-    
-}
 
 - (IBAction)fbButton:(id)sender {
     
@@ -259,6 +256,14 @@
 	
 	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
 	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
+    
+    //KEYBOARD
+    rate2.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 4.1)) {
+        rate2.keyboardType = UIKeyboardTypeDecimalPad;
+    }
+    
+    
 }
 
 
