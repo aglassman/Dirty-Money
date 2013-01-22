@@ -28,7 +28,7 @@
 	stop.alpha = 1.0f;
 	
 	start.enabled = NO;
-	start.alpha = .05f;
+	start.alpha = .00f;
 	
 	copy.enabled = NO;
 	copy.alpha = .05f;
@@ -43,7 +43,7 @@
 	bankTot.text = [NSString stringWithFormat:@"%02.2f", floatTot];
 	
 	stop.enabled = NO;
-	stop.alpha = .05f;
+	stop.alpha = .00f;
 	
 	start.enabled = YES;
 	start.alpha = 1.0f;
@@ -74,7 +74,7 @@
 	rate = [hourlyRate.text floatValue];
 	
 	stop.enabled = NO;
-	stop.alpha = .05f;
+	stop.alpha = .00f;
 	
 	start.enabled = YES;
 	start.alpha = 1.0f;
@@ -118,7 +118,7 @@
 	stop = (UIButton *) sender;
 	
 	stop.enabled = NO;
-	stop.alpha = .05f;
+	stop.alpha = .00f;
 	
 	start.enabled = YES;
 	start.alpha = 1.0f;
@@ -239,7 +239,7 @@
 - (IBAction)clearBank:(id)sender {
 	
 	dollaInt = 0;
-	bankTot.text = [NSString stringWithFormat:@"%02.2f", 0];
+	bankTot.text = [NSString stringWithFormat:@"%02.2d", 0];
 	floatTot = 0;
 }
 
