@@ -11,9 +11,33 @@
 @implementation DirtyMoneyViewController
 @synthesize label;
 @synthesize dollas;
-@synthesize rate2;
 @synthesize hourlyRate;
+
+-(IBAction)sliderChanged:(id)sender {
+    UISlider *slider = (UISlider *)sender;
+    float slideValue = (float)(slider.value);
+    hourlyRate.text =[[NSString alloc] initWithFormat:@"%02.2f", slideValue];
+    
+    
+    //Confirm
+    rate = [hourlyRate.text floatValue];
 	
+	stop.enabled = NO;
+	stop.alpha = .00f;
+	
+	start.enabled = YES;
+	start.alpha = 1.0f;
+	
+	bank.enabled = YES;
+	bank.alpha = 1.0f;
+	
+	
+	NSUserDefaults *defaultsRate = [NSUserDefaults standardUserDefaults];
+	[defaultsRate setObject:hourlyRate.text forKey:@"rateKey"];
+	[defaultsRate setInteger:rate forKey:@"rateInt"];
+	[defaultsRate synchronize];
+    
+}
 	
 -(IBAction)start:(id)sender {
 	
@@ -29,9 +53,6 @@
 	
 	start.enabled = NO;
 	start.alpha = .00f;
-	
-	copy.enabled = NO;
-	copy.alpha = .05f;
 	
 }
 
@@ -51,9 +72,6 @@
 	bank.enabled = NO;
 	bank.alpha = .05f;
 	
-	copy.enabled = YES;
-	copy.alpha = 1.0f;
-	
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults setObject:bankTot.text forKey:@"bankKey"];
 	[defaults setFloat:floatTot forKey:@"floatKey"];
@@ -62,33 +80,6 @@
     
     mainInt = 0;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", 0.00];
-	
-}
-
-- (IBAction)copy:(id)sender
-{
-	copy = (UIButton *) sender;
-	
-	[hourlyRate setText:[rate2 text]];
-	
-	rate = [hourlyRate.text floatValue];
-	
-	stop.enabled = NO;
-	stop.alpha = .00f;
-	
-	start.enabled = YES;
-	start.alpha = 1.0f;
-	
-	bank.enabled = YES;
-	bank.alpha = 1.0f;
-	
-	copy.enabled = YES;
-	copy.alpha = 1.0f;
-	
-	NSUserDefaults *defaultsRate = [NSUserDefaults standardUserDefaults];
-	[defaultsRate setObject:hourlyRate.text forKey:@"rateKey"];
-	[defaultsRate setInteger:rate forKey:@"rateInt"];
-	[defaultsRate synchronize];
 	
 }
 
@@ -101,13 +92,6 @@
 	dollaInt = (mainInt * rate / 36) / 100;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
 	
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)rate2 {
-    if (1 == 1) {
-        [rate2 resignFirstResponder];
-    }
-    return YES;
 }	
 
 - (IBAction)stop:(id)sender {
@@ -125,11 +109,6 @@
 	
 	bank.enabled = YES;
 	bank.alpha = 1.0f;
-	
-	copy.enabled = YES;
-	copy.alpha = 1.0f;    
-    
-  
 	
 	if (dollaInt >= 0.01 && dollaInt < 1.5) {
 		NSString *message = [[NSString alloc] initWithFormat:
@@ -243,9 +222,6 @@
 	floatTot = 0;
 }
 
-
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -253,15 +229,11 @@
 	bankTot.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"bankKey"];
 	floatTot = [[NSUserDefaults standardUserDefaults] floatForKey:@"floatKey"];
 	dollaInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
-	
 	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
 	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
     
-    //KEYBOARD
-    rate2.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    if (([[[UIDevice currentDevice] systemVersion] doubleValue] >= 4.1)) {
-        rate2.keyboardType = UIKeyboardTypeDecimalPad;
-    }
+    
+    
     
     
 }
@@ -270,18 +242,13 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
 	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
     [super dealloc];
+    [hourlyRate release];
 }
 
 #pragma mark -

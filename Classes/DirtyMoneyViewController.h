@@ -21,28 +21,25 @@
 	IBOutlet UILabel *dollas;
 	NSTimer * randomMain;
 	NSNumber * total;
-	IBOutlet UITextField * rate2;
 	IBOutlet UILabel * hourlyRate;
 	UIButton * start;
 	UIButton * stop;
 	UIButton * bank;
-	UIButton * copy;	
 	UIButton * clearBank;
     UIButton * fbButton;
     Facebook *facebook;
 
 }
 
-- (IBAction) copy:(id)sender;
 - (IBAction) start:(id)sender;
 - (IBAction) stop:(id)sender;
 - (IBAction) bank:(id)sender;
 - (IBAction) clearBank:(id)sender;
 - (IBAction) fbButton: (id)sender;
+- (IBAction) sliderChanged:(id)sender;
+
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet UILabel *dollas;
-@property (nonatomic, retain) IBOutlet UITextField *rate2;
 @property (nonatomic, retain) IBOutlet UILabel *hourlyRate;
 
 @end
-
