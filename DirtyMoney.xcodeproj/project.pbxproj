@@ -9,17 +9,12 @@
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* DirtyMoneyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* DirtyMoneyAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		2899E5220DE3E06400AC0155 /* DirtyMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* DirtyMoneyViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* DirtyMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* DirtyMoneyViewController.m */; };
-		6331403F15AE613E00679A25 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6331403D15AE613E00679A25 /* SettingsViewController.m */; };
-		6331404015AE613E00679A25 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6331403E15AE613E00679A25 /* SettingsViewController.xib */; };
-		634D8BE9162D0BD300921CEF /* Untitled-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 634D8BE8162D0BD300921CEF /* Untitled-1.jpg */; };
 		634D8BEB162D0DB800921CEF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 634D8BEA162D0DB800921CEF /* Default-568h@2x.png */; };
 		63659937155586750051931D /* Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63659936155586750051931D /* Icon.jpg */; };
+		63D3AFC116CF45C300619FF9 /* sxytoilet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63D3AFC016CF45C300619FF9 /* sxytoilet.jpg */; };
 		63F46863151F7932009C1928 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F46858151F7932009C1928 /* NSObject+SBJSON.m */; };
 		63F46864151F7932009C1928 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F4685A151F7932009C1928 /* NSString+SBJSON.m */; };
 		63F46865151F7932009C1928 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F4685C151F7932009C1928 /* SBJSON.m */; };
@@ -32,6 +27,11 @@
 		63F46879151F7974009C1928 /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F46871151F7974009C1928 /* FBFrictionlessRequestSettings.m */; };
 		63F4687A151F7974009C1928 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F46873151F7974009C1928 /* FBLoginDialog.m */; };
 		63F4687B151F7974009C1928 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F46875151F7974009C1928 /* FBRequest.m */; };
+		63FC972116CB39A600054572 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FC972016CB39A600054572 /* iAd.framework */; };
+		63FC972316CB3A8D00054572 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FC972216CB3A8D00054572 /* QuartzCore.framework */; };
+		63FC972416CB431800054572 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		63FC972516CB432100054572 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		63FC972716CB432900054572 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63FC972616CB432900054572 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,19 +40,17 @@
 		1D3623250D0F684500981E51 /* DirtyMoneyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirtyMoneyAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* DirtyMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirtyMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E5210DE3E06400AC0155 /* DirtyMoneyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirtyMoneyViewController.xib; sourceTree = "<group>"; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28D7ACF60DDB3853001CB0EB /* DirtyMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirtyMoneyViewController.h; sourceTree = "<group>"; };
 		28D7ACF70DDB3853001CB0EB /* DirtyMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirtyMoneyViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* DirtyMoney_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirtyMoney_Prefix.pch; sourceTree = "<group>"; };
-		6331403C15AE613E00679A25 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		6331403D15AE613E00679A25 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		6331403E15AE613E00679A25 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		634D8BE8162D0BD300921CEF /* Untitled-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Untitled-1.jpg"; sourceTree = "<group>"; };
+		6338108416CEF90A00D14380 /* UIButton+Glossy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIButton+Glossy.h"; path = "../../Downloads/UIButton-Glossy-master/UIButton+Glossy.h"; sourceTree = "<group>"; };
+		6338108516CEF90A00D14380 /* UIButton+Glossy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Glossy.m"; path = "../../Downloads/UIButton-Glossy-master/UIButton+Glossy.m"; sourceTree = "<group>"; };
 		634D8BEA162D0DB800921CEF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		63659936155586750051931D /* Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Icon.jpg; sourceTree = "<group>"; };
+		63D3AFC016CF45C300619FF9 /* sxytoilet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sxytoilet.jpg; sourceTree = "<group>"; };
 		63F46856151F7932009C1928 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		63F46857151F7932009C1928 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		63F46858151F7932009C1928 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -79,6 +77,9 @@
 		63F46873151F7974009C1928 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBLoginDialog.m; sourceTree = "<group>"; };
 		63F46874151F7974009C1928 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
 		63F46875151F7974009C1928 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBRequest.m; sourceTree = "<group>"; };
+		63FC972016CB39A600054572 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		63FC972216CB3A8D00054572 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		63FC972616CB432900054572 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* DirtyMoney-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DirtyMoney-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,9 +88,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
-				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				63FC972716CB432900054572 /* CoreGraphics.framework in Frameworks */,
+				63FC972516CB432100054572 /* Foundation.framework in Frameworks */,
+				63FC972416CB431800054572 /* UIKit.framework in Frameworks */,
+				63FC972316CB3A8D00054572 /* QuartzCore.framework in Frameworks */,
+				63FC972116CB39A600054572 /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +102,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6338108416CEF90A00D14380 /* UIButton+Glossy.h */,
+				6338108516CEF90A00D14380 /* UIButton+Glossy.m */,
 				63F46869151F7974009C1928 /* facebook_ios_sdk_Prefix.pch */,
 				63F4686A151F7974009C1928 /* Facebook.h */,
 				63F4686B151F7974009C1928 /* Facebook.m */,
@@ -108,9 +113,6 @@
 				63F4686F151F7974009C1928 /* FBDialog.m */,
 				63F46870151F7974009C1928 /* FBFrictionlessRequestSettings.h */,
 				63F46871151F7974009C1928 /* FBFrictionlessRequestSettings.m */,
-				6331403C15AE613E00679A25 /* SettingsViewController.h */,
-				6331403D15AE613E00679A25 /* SettingsViewController.m */,
-				6331403E15AE613E00679A25 /* SettingsViewController.xib */,
 				63F46872151F7974009C1928 /* FBLoginDialog.h */,
 				63F46873151F7974009C1928 /* FBLoginDialog.m */,
 				63F46874151F7974009C1928 /* FBRequest.h */,
@@ -157,11 +159,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63D3AFC016CF45C300619FF9 /* sxytoilet.jpg */,
 				63659936155586750051931D /* Icon.jpg */,
 				2899E5210DE3E06400AC0155 /* DirtyMoneyViewController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* DirtyMoney-Info.plist */,
-				634D8BE8162D0BD300921CEF /* Untitled-1.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -169,9 +171,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63FC972616CB432900054572 /* CoreGraphics.framework */,
+				63FC972216CB3A8D00054572 /* QuartzCore.framework */,
+				63FC972016CB39A600054572 /* iAd.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -252,9 +256,8 @@
 				2899E5220DE3E06400AC0155 /* DirtyMoneyViewController.xib in Resources */,
 				63F46877151F7974009C1928 /* FBDialog.bundle in Resources */,
 				63659937155586750051931D /* Icon.jpg in Resources */,
-				6331404015AE613E00679A25 /* SettingsViewController.xib in Resources */,
-				634D8BE9162D0BD300921CEF /* Untitled-1.jpg in Resources */,
 				634D8BEB162D0DB800921CEF /* Default-568h@2x.png in Resources */,
+				63D3AFC116CF45C300619FF9 /* sxytoilet.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +282,6 @@
 				63F46879151F7974009C1928 /* FBFrictionlessRequestSettings.m in Sources */,
 				63F4687A151F7974009C1928 /* FBLoginDialog.m in Sources */,
 				63F4687B151F7974009C1928 /* FBRequest.m in Sources */,
-				6331403F15AE613E00679A25 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +293,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -306,6 +312,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = DirtyMoney_Prefix.pch;
 				INFOPLIST_FILE = "DirtyMoney-Info.plist";

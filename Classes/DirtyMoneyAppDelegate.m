@@ -16,15 +16,24 @@
 @synthesize facebook;
 @synthesize rootController;
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
-    
-   [window addSubview:viewController.view];
-   [window addSubview:rootController.view];
-   [window makeKeyAndVisible];
-    
-   [window setRootViewController:rootController];
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.viewController = [[DirtyMoneyViewController alloc] initWithNibName:@"DirtyMoneyViewController" bundle:nil];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+    return YES;
 }
+
+//- (void)applicationDidFinishLaunching:(UIApplication *)application {
+
+// [window addSubview:viewController.view];
+//   [window addSubview:rootController.view];
+//   [window makeKeyAndVisible];
+//   [window setRootViewController:rootController];
+    
+//}
 
 
 - (BOOL)application:(UIApplication *)application handleopenURL:(NSURL *)url {
@@ -37,7 +46,6 @@
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
     [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
     [defaults synchronize];
-    
     
 }
 

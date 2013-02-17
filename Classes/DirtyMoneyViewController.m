@@ -7,82 +7,107 @@
 //
 
 #import "DirtyMoneyViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIButton+Glossy.h"
 
+@interface DirtyMoneyViewController()
+@end
 @implementation DirtyMoneyViewController
 @synthesize label;
 @synthesize dollas;
 @synthesize hourlyRate;
+@synthesize start, stop, fbButton, clearLifeTotal;
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+	
+	lifeTotal.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"bankKey"];
+	floatTot = [[NSUserDefaults standardUserDefaults] floatForKey:@"floatKey"];
+	dollaInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
+	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
+	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
+    
+    [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    NSArray *buttons = [NSArray arrayWithObjects: self.start, self.stop, self.fbButton, self.clearLifeTotal,nil];
+    
+    for(UIButton *btn in buttons)
+    {
+        // Set the button Text Color
+        [btn setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        
+        // Set default backgrond color
+        [btn setBackgroundColor:[UIColor blackColor]];
+        
+        // Add Custom Font
+        [[btn titleLabel] setFont:[UIFont fontWithName:@"BodoniSvtyTwoSCITCTT-Book" size:18.0f]];
+        
+        // Draw a custom gradient
+        CAGradientLayer *btnGradient = [CAGradientLayer layer];
+        btnGradient.frame = btn.bounds;
+        btnGradient.colors = [NSArray arrayWithObjects:
+                              (id)[[UIColor colorWithRed:102.0f / 255.0f green:102.0f / 255.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],
+                              (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor],
+                              nil];
+        [btn.layer insertSublayer:btnGradient atIndex:0];
+        
+        // Round button corners
+        CALayer *btnLayer = [btn layer];
+        [btnLayer setMasksToBounds:YES];
+        [btnLayer setCornerRadius:5.0f];
+        
+        // Apply a 1 pixel, black border around Buy Button
+        [btnLayer setBorderWidth:1.0f];
+        [btnLayer setBorderColor:[[UIColor blackColor] CGColor]];
+        
+        // Make glossy
+        //[btn makeGlossy];
+    }
+    
+    stop.hidden = YES;
+    fbButton.hidden = YES;
+    
+}
 
 -(IBAction)sliderChanged:(id)sender {
-    UISlider *slider = (UISlider *)sender;
+    slider = (UISlider *)sender;
+    
     float slideValue = (float)(slider.value);
     hourlyRate.text =[[NSString alloc] initWithFormat:@"%02.2f", slideValue];
     
-    
     //Confirm
     rate = [hourlyRate.text floatValue];
-	
-	stop.enabled = NO;
-	stop.alpha = .00f;
-	
-	start.enabled = YES;
-	start.alpha = 1.0f;
-	
-	bank.enabled = YES;
-	bank.alpha = 1.0f;
-	
-	
+    
+	stop.hidden = YES;
+	start.hidden = NO;
+	fbButton.hidden = YES;
+    clearLifeTotal.hidden = YES;
+    
 	NSUserDefaults *defaultsRate = [NSUserDefaults standardUserDefaults];
 	[defaultsRate setObject:hourlyRate.text forKey:@"rateKey"];
 	[defaultsRate setInteger:rate forKey:@"rateInt"];
 	[defaultsRate synchronize];
-    
 }
 	
 -(IBAction)start:(id)sender {
 	
-	randomMain = [NSTimer scheduledTimerWithTimeInterval:(1.0/1.0) target:self selector:@selector(randomMainVoid) userInfo:nil repeats:YES];
-	
 	start = (UIButton *) sender;
 	
-	bank.enabled = NO;
-	bank.alpha = .05f;
-	
-	stop.enabled = YES;
-	stop.alpha = 1.0f;
-	
-	start.enabled = NO;
-	start.alpha = .00f;
-	
-}
-
-
-- (IBAction)bank:(id)sender {
-	
-	bank = (UIButton *) sender;
-	floatTot = [dollas.text floatValue] + floatTot;
-	bankTot.text = [NSString stringWithFormat:@"%02.2f", floatTot];
-	
-	stop.enabled = NO;
-	stop.alpha = .00f;
-	
-	start.enabled = YES;
-	start.alpha = 1.0f;
-	
-	bank.enabled = NO;
-	bank.alpha = .05f;
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:bankTot.text forKey:@"bankKey"];
-	[defaults setFloat:floatTot forKey:@"floatKey"];
-	[defaults setInteger:dollaInt forKey:@"intKey"];
-	[defaults synchronize];
+	stop.hidden = NO;
+	start.hidden = YES;
+    fbButton.hidden = YES;
+    clearLifeTotal.hidden = YES;
+    slider.userInteractionEnabled = NO;
     
-    mainInt = 0;
-	dollas.text = [NSString stringWithFormat:@"%02.2f", 0.00];
+    randomMain = [NSTimer scheduledTimerWithTimeInterval:(1.0/1.0) target:self selector:@selector(randomMainVoid) userInfo:nil repeats:YES];
 	
 }
-
 
 -(void)randomMainVoid {
 	
@@ -91,8 +116,7 @@
 	
 	dollaInt = (mainInt * rate / 36) / 100;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
-	
-}	
+}
 
 - (IBAction)stop:(id)sender {
     
@@ -100,15 +124,13 @@
 	[randomMain invalidate];
 	
 	stop = (UIButton *) sender;
-	
-	stop.enabled = NO;
-	stop.alpha = .00f;
-	
-	start.enabled = YES;
-	start.alpha = 1.0f;
-	
-	bank.enabled = YES;
-	bank.alpha = 1.0f;
+    
+    stop.hidden = YES;
+	start.hidden = NO;
+    fbButton.hidden = NO;
+    clearLifeTotal.hidden = NO;
+    slider.userInteractionEnabled = YES;
+    
 	
 	if (dollaInt >= 0.01 && dollaInt < 1.5) {
 		NSString *message = [[NSString alloc] initWithFormat:
@@ -161,6 +183,22 @@
 		[message release];
         
     }
+    
+    //Bank total
+    
+    floatTot = [dollas.text floatValue] + floatTot;
+    lifeTotal.text = [NSString stringWithFormat:@"%02.2f", floatTot];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:lifeTotal.text forKey:@"bankKey"];
+    [defaults setFloat:floatTot forKey:@"floatKey"];
+    [defaults setInteger:dollaInt forKey:@"intKey"];
+    [defaults synchronize];
+    
+    mainInt = 0;
+    
+    //dollas.text = [NSString stringWithFormat:@"%02.2f", 0.00];
+    
 }
 
 
@@ -215,27 +253,11 @@
     
 }
 
-- (IBAction)clearBank:(id)sender {
+- (IBAction)clearLifeTotal:(id)sender {
 	
 	dollaInt = 0;
-	bankTot.text = [NSString stringWithFormat:@"%02.2d", 0];
+	lifeTotal.text = [NSString stringWithFormat:@"%02.2d", 0];
 	floatTot = 0;
-}
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	
-	bankTot.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"bankKey"];
-	floatTot = [[NSUserDefaults standardUserDefaults] floatForKey:@"floatKey"];
-	dollaInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
-	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
-	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
-    
-    
-    
-    
-    
 }
 
 
