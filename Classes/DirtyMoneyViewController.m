@@ -26,6 +26,8 @@
 	dollaInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
 	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
 	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
+    slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
+    pennySlider.value = [[NSUserDefaults standardUserDefaults] floatForKey:@"pennyRate"];
     
     [super viewDidLoad];
 }
@@ -78,8 +80,9 @@
 -(IBAction)sliderChanged:(id)sender {
     slider = (UISlider *)sender;
     
-    float slideValue = (float)(slider.value);
-    hourlyRate.text =[[NSString alloc] initWithFormat:@"%02.2f", slideValue];
+    slideValue = (int)(slider.value);
+    
+    hourlyRate.text =[[NSString alloc] initWithFormat:@"%02.2f", slideValue+pennySlideValue];
     
     //Confirm
     rate = [hourlyRate.text floatValue];
@@ -89,12 +92,25 @@
 	fbButton.hidden = YES;
     clearLifeTotal.hidden = YES;
     
-	NSUserDefaults *defaultsRate = [NSUserDefaults standardUserDefaults];
+	defaultsRate = [NSUserDefaults standardUserDefaults];
 	[defaultsRate setObject:hourlyRate.text forKey:@"rateKey"];
 	[defaultsRate setInteger:rate forKey:@"rateInt"];
 	[defaultsRate synchronize];
 }
-	
+-(IBAction) pennySliderChanged:(id)sender {
+    
+    hourlyRate.text =[[NSString alloc] initWithFormat:@"%0.2f", pennySlideValue+slideValue];
+    
+    pennySlideValue = (float)(pennySlider.value);
+    
+    rate = [hourlyRate.text floatValue];
+    
+    defaultsRate = [NSUserDefaults standardUserDefaults];
+    [defaultsRate setObject:hourlyRate.text forKey:@"rateKey"];
+    [defaultsRate setFloat:pennySlider.value forKey:@"pennyRate"];
+    [defaultsRate synchronize];
+
+}
 -(IBAction)start:(id)sender {
 	
 	start = (UIButton *) sender;
@@ -104,15 +120,16 @@
     fbButton.hidden = YES;
     clearLifeTotal.hidden = YES;
     slider.userInteractionEnabled = NO;
+    pennySlider.userInteractionEnabled = NO;
     
     randomMain = [NSTimer scheduledTimerWithTimeInterval:(1.0/1.0) target:self selector:@selector(randomMainVoid) userInfo:nil repeats:YES];
-	
+    
 }
 
 -(void)randomMainVoid {
 	
 	mainInt += 1;
-	label.text = [NSString stringWithFormat:@"%d", mainInt];
+	//label.text = [NSString stringWithFormat:@"%d", mainInt];
 	
 	dollaInt = (mainInt * rate / 36) / 100;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
@@ -130,6 +147,7 @@
     fbButton.hidden = NO;
     clearLifeTotal.hidden = NO;
     slider.userInteractionEnabled = YES;
+    pennySlider.userInteractionEnabled = YES;
     
 	
 	if (dollaInt >= 0.01 && dollaInt < 1.5) {
@@ -260,6 +278,30 @@
 	floatTot = 0;
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    int closed = [NSString stringWithFormat:@"%f",
+                              [[NSDate date] timeIntervalSince1970]];
+    closeTime = closed;
+    
+    NSUserDefaults *saveTimeStamp = [NSUserDefaults standardUserDefaults];
+	[saveTimeStamp setInteger:closeTime forKey:@"closeTimeKey"];
+    
+    NSUserDefaults *mainIntSave = [NSUserDefaults standardUserDefaults];
+    [mainIntSave setInteger:mainInt forKey:@"mainIntKey"];
+    
+   }
+
+- (void)applicationDidEnterForeground:(UIApplication *)application {
+    
+    int opened = [NSString stringWithFormat:@"%f",
+                  [[NSDate date] timeIntervalSince1970]];
+    reopenTime = opened;
+    closeTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"closeTimeKey"];
+    mainInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"mainIntKey"];
+    mainInt = mainInt + (reopenTime - closeTime);
+    
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -269,6 +311,7 @@
 
 
 - (void)dealloc {
+    [pennySlider release];
     [super dealloc];
     [hourlyRate release];
 }
@@ -276,4 +319,9 @@
 #pragma mark -
 #pragma mark Text Fields
 
+- (void)viewDidUnload {
+    [pennySlider release];
+    pennySlider = nil;
+    [super viewDidUnload];
+}
 @end

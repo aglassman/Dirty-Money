@@ -13,21 +13,17 @@
 @interface DirtyMoneyViewController : UIViewController {
 
 	int mainInt;
-	float dollaInt;
-	float rate;
-	float floatTot;
+	float dollaInt, rate, floatTot, slideValue, pennySlideValue;
 	IBOutlet UILabel *lifeTotal;
 	IBOutlet UILabel *label;
 	IBOutlet UILabel *dollas;
 	NSTimer * randomMain;
 	NSNumber * total;
 	IBOutlet UILabel * hourlyRate;
-	//UIButton * start;
-	//UIButton * stop;
-	//UIButton * clearLifeTotal;
-    //UIButton * fbButton;
     Facebook *facebook;
-    UISlider *slider;
+    UISlider *slider, *pennySlider;
+    int closeTime, reopenTime;
+    NSUserDefaults *defaultsRate;
 
 }
 
@@ -36,6 +32,7 @@
 - (IBAction) clearLifeTotal:(id)sender;
 - (IBAction) fbButton: (id)sender;
 - (IBAction) sliderChanged:(id)sender;
+- (IBAction) pennySliderChanged:(id)sender;
 
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet UILabel *dollas;
@@ -44,5 +41,4 @@
 @property (nonatomic, strong) IBOutlet UIButton *stop;
 @property (nonatomic, strong) IBOutlet UIButton *clearLifeTotal;
 @property (nonatomic, strong) IBOutlet UIButton *fbButton;
-//@property (nonatomic, strong) IBOutlet UISlider *slider;
 @end
