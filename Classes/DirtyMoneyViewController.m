@@ -9,6 +9,7 @@
 #import "DirtyMoneyViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIButton+Glossy.h"
+#import "DirtyMoneyAppDelegate.h"
 
 @interface DirtyMoneyViewController()
 @end
@@ -17,11 +18,19 @@
 @synthesize dollas;
 @synthesize hourlyRate;
 @synthesize start, stop, fbButton, clearLifeTotal;
+@synthesize dollaInt, mainInt;
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-	
-	lifeTotal.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"bankKey"];
+-(void)viewDidLoad  {
+    
+    [super viewDidLoad];
+    
+    DirtyMoneyAppDelegate *delegate = (DirtyMoneyAppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    facebook = [[Facebook alloc] initWithAppId:@"196422827058096" andDelegate:delegate];
+    
+    permissions = [[NSArray alloc] initWithObjects:@"user_likes", @"read_stream",@"publish_stream", nil];
+    
+    lifeTotal.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"bankKey"];
 	floatTot = [[NSUserDefaults standardUserDefaults] floatForKey:@"floatKey"];
 	dollaInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
 	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
@@ -29,12 +38,11 @@
     slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
     pennySlider.value = [[NSUserDefaults standardUserDefaults] floatForKey:@"pennyRate"];
     
-    [super viewDidLoad];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+-(void)viewDidAppear:(BOOL)animated {
     
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     NSArray *buttons = [NSArray arrayWithObjects: self.start, self.stop, self.fbButton, self.clearLifeTotal,nil];
     
@@ -97,6 +105,7 @@
 	[defaultsRate setInteger:rate forKey:@"rateInt"];
 	[defaultsRate synchronize];
 }
+
 -(IBAction) pennySliderChanged:(id)sender {
     
     hourlyRate.text =[[NSString alloc] initWithFormat:@"%0.2f", pennySlideValue+slideValue];
@@ -111,6 +120,7 @@
     [defaultsRate synchronize];
 
 }
+
 -(IBAction)start:(id)sender {
 	
 	start = (UIButton *) sender;
@@ -127,19 +137,25 @@
 }
 
 -(void)randomMainVoid {
-	
-	mainInt += 1;
-	//label.text = [NSString stringWithFormat:@"%d", mainInt];
-	
+    
+    mainInt += 1;
+    
+	label.text = [NSString stringWithFormat:@"%d", mainInt];
+    
 	dollaInt = (mainInt * rate / 36) / 100;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
 }
 
-- (IBAction)stop:(id)sender {
-    
+-(IBAction)stop:(id)sender {
 	
 	[randomMain invalidate];
-	
+    
+    DirtyMoneyAppDelegate *dirtyMoneyAppDelegate = (DirtyMoneyAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+	time = round([dirtyMoneyAppDelegate timeInterval]);
+    
+    mainInt = mainInt + time;
+    
 	stop = (UIButton *) sender;
     
     stop.hidden = YES;
@@ -219,13 +235,12 @@
     
 }
 
-
-- (IBAction)fbButton:(id)sender {
+-(IBAction)fbButton:(id)sender {
     
-    
-    //Login to FB
-    
-    facebook = [[Facebook alloc] initWithAppId:@"196422827058096" andDelegate:self];
+    if (![facebook isSessionValid]) {
+        [facebook authorize:permissions];
+        [permissions release];
+    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
@@ -233,17 +248,6 @@
         facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
         facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
-    if (![facebook isSessionValid]) {
-        NSArray *permissions = [[NSArray alloc] initWithObjects:
-                                @"user_likes", 
-                                @"read_stream",
-                                @"publish_stream",
-                                nil];
-        [facebook authorize:permissions];
-        [permissions release];
-    }
-    
-    
     
     //Post to Wall
     
@@ -266,62 +270,43 @@
                                    actionLinksStr, @"actions",
                                    nil];
     
-    [facebook dialog:@"feed" andParams:params andDelegate:self];
+    FBDialog *delegate = (FBDialog *)[UIApplication sharedApplication].delegate;
     
-    
+    [facebook dialog:@"feed" andParams:params andDelegate:(id <FBDialogDelegate>)delegate];
 }
 
-- (IBAction)clearLifeTotal:(id)sender {
+-(IBAction)clearLifeTotal:(id)sender {
 	
 	dollaInt = 0;
-	lifeTotal.text = [NSString stringWithFormat:@"%02.2d", 0];
+	lifeTotal.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
 	floatTot = 0;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    
-    int closed = [NSString stringWithFormat:@"%f",
-                              [[NSDate date] timeIntervalSince1970]];
-    closeTime = closed;
-    
-    NSUserDefaults *saveTimeStamp = [NSUserDefaults standardUserDefaults];
-	[saveTimeStamp setInteger:closeTime forKey:@"closeTimeKey"];
-    
-    NSUserDefaults *mainIntSave = [NSUserDefaults standardUserDefaults];
-    [mainIntSave setInteger:mainInt forKey:@"mainIntKey"];
-    
-   }
 
-- (void)applicationDidEnterForeground:(UIApplication *)application {
-    
-    int opened = [NSString stringWithFormat:@"%f",
-                  [[NSDate date] timeIntervalSince1970]];
-    reopenTime = opened;
-    closeTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"closeTimeKey"];
-    mainInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"mainIntKey"];
-    mainInt = mainInt + (reopenTime - closeTime);
-    
-}
-
-- (void)didReceiveMemoryWarning {
+-(void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 	// Release any cached data, images, etc that aren't in use.
 }
 
-
-- (void)dealloc {
+-(void)dealloc {
     [pennySlider release];
     [super dealloc];
     [hourlyRate release];
 }
 
-#pragma mark -
-#pragma mark Text Fields
-
-- (void)viewDidUnload {
+-(void)viewDidUnload {
     [pennySlider release];
     pennySlider = nil;
     [super viewDidUnload];
 }
+
+- (float) dollaInt {
+    return dollaInt;
+}
+
+- (int) mainInt {
+    return mainInt;
+}
+
 @end

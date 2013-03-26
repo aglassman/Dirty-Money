@@ -26,16 +26,6 @@
     return YES;
 }
 
-//- (void)applicationDidFinishLaunching:(UIApplication *)application {
-
-// [window addSubview:viewController.view];
-//   [window addSubview:rootController.view];
-//   [window makeKeyAndVisible];
-//   [window setRootViewController:rootController];
-    
-//}
-
-
 - (BOOL)application:(UIApplication *)application handleopenURL:(NSURL *)url {
     
     return [facebook handleOpenURL:url]; 
@@ -51,7 +41,10 @@
 
 
 - (void)fbDidLogout {
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"FBAccessTokenKey"];
+    [defaults removeObjectForKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
 }
 
 - (void)fbSessionInvalidated {
@@ -66,7 +59,29 @@
 - (void)fbDidNotLogin:(BOOL)cancelled {
     
 }
+
+-(void)applicationWillResignActive:(UIApplication *)application {
     
+    closeTime = [[NSDate date]retain];
+
+    NSUserDefaults *defaultsCloseTime;
+	[defaultsCloseTime setInteger:closeTime forKey:@"closeTimeKey"];
+	[defaultsCloseTime synchronize];
+    
+}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    closeTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"closeTimeKey"];
+ 
+    timeInterval = [closeTime timeIntervalSinceNow] * -100;
+    
+}
+
+- (NSTimeInterval)timeInterval {
+    return timeInterval;
+}
+
 
 - (void)dealloc {
     [viewController release];

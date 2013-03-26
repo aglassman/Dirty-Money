@@ -21,10 +21,10 @@
 	NSNumber * total;
 	IBOutlet UILabel * hourlyRate;
     Facebook *facebook;
+    NSArray *permissions;
     UISlider *slider, *pennySlider;
-    int closeTime, reopenTime;
     NSUserDefaults *defaultsRate;
-
+    NSInteger time;
 }
 
 - (IBAction) start:(id)sender;
@@ -33,7 +33,11 @@
 - (IBAction) fbButton: (id)sender;
 - (IBAction) sliderChanged:(id)sender;
 - (IBAction) pennySliderChanged:(id)sender;
+- (float) dollaInt;
+- (int) mainInt;
 
+@property (nonatomic, assign) int mainInt;
+@property (nonatomic, assign) float dollaInt;
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet UILabel *dollas;
 @property (nonatomic, retain) IBOutlet UILabel *hourlyRate;
