@@ -17,11 +17,8 @@
     UITabBarController *rootController;
     DirtyMoneyViewController *viewController;
     Facebook *facebook;
-    NSDate *closeTime;
-    NSTimeInterval timeInterval;
 }
 
-- (NSTimeInterval) timeInterval;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet DirtyMoneyViewController *viewController;
 @property (nonatomic, retain) IBOutlet UITabBarController *rootController;

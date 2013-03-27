@@ -18,7 +18,7 @@
 @synthesize dollas;
 @synthesize hourlyRate;
 @synthesize start, stop, fbButton, clearLifeTotal;
-@synthesize dollaInt, mainInt;
+@synthesize dollaFloat;
 
 -(void)viewDidLoad  {
     
@@ -32,7 +32,7 @@
     
     lifeTotal.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"bankKey"];
 	floatTot = [[NSUserDefaults standardUserDefaults] floatForKey:@"floatKey"];
-	dollaInt = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
+	dollaFloat = [[NSUserDefaults standardUserDefaults] integerForKey:@"intKey"];
 	hourlyRate.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"rateKey"];
 	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
     slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
@@ -134,27 +134,23 @@
     
     randomMain = [NSTimer scheduledTimerWithTimeInterval:(1.0/1.0) target:self selector:@selector(randomMainVoid) userInfo:nil repeats:YES];
     
+    dateStart = [[NSDate date]retain];
+    
 }
 
 -(void)randomMainVoid {
     
-    mainInt += 1;
+    interval = round([dateStart timeIntervalSinceNow]) *-1;
     
-	label.text = [NSString stringWithFormat:@"%d", mainInt];
+	label.text = [NSString stringWithFormat:@"%f", interval];
     
-	dollaInt = (mainInt * rate / 36) / 100;
-	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
+	dollaFloat = (interval * rate / 36) / 100;
+	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaFloat];
 }
 
 -(IBAction)stop:(id)sender {
 	
 	[randomMain invalidate];
-    
-    DirtyMoneyAppDelegate *dirtyMoneyAppDelegate = (DirtyMoneyAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-	time = round([dirtyMoneyAppDelegate timeInterval]);
-    
-    mainInt = mainInt + time;
     
 	stop = (UIButton *) sender;
     
@@ -166,7 +162,7 @@
     pennySlider.userInteractionEnabled = YES;
     
 	
-	if (dollaInt >= 0.01 && dollaInt < 1.5) {
+	if (dollaFloat >= 0.01 && dollaFloat < 1.5) {
 		NSString *message = [[NSString alloc] initWithFormat:
 						 @"Only $%@! That can't be all",dollas.text];
 	
@@ -184,7 +180,7 @@
     }
 	
 	
-	if (dollaInt >= 1.5 && dollaInt < 2) {
+	if (dollaFloat >= 1.5 && dollaFloat < 2) {
 		NSString *message = [[NSString alloc] initWithFormat:
 							 @"Somone just paid you $%@ for that.. WIN", dollas.text];
 		
@@ -201,7 +197,7 @@
         
     }
 	
-	if (dollaInt >= 2) {
+	if (dollaFloat >= 2) {
 		NSString *message = [[NSString alloc] initWithFormat:
 							 @"You just stuck it to the MAN for $%@!!", dollas.text];
 		
@@ -226,13 +222,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:lifeTotal.text forKey:@"bankKey"];
     [defaults setFloat:floatTot forKey:@"floatKey"];
-    [defaults setInteger:dollaInt forKey:@"intKey"];
+    [defaults setInteger:dollaFloat forKey:@"intKey"];
     [defaults synchronize];
-    
-    mainInt = 0;
-    
-    //dollas.text = [NSString stringWithFormat:@"%02.2f", 0.00];
-    
 }
 
 -(IBAction)fbButton:(id)sender {
@@ -277,11 +268,14 @@
 
 -(IBAction)clearLifeTotal:(id)sender {
 	
-	dollaInt = 0;
-	lifeTotal.text = [NSString stringWithFormat:@"%02.2f", dollaInt];
+	dollaFloat = 0;
+	lifeTotal.text = [NSString stringWithFormat:@"%02.2f", dollaFloat];
 	floatTot = 0;
 }
 
+- (float) dollaFloat {
+       return dollaFloat;
+    }
 
 -(void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -299,14 +293,6 @@
     [pennySlider release];
     pennySlider = nil;
     [super viewDidUnload];
-}
-
-- (float) dollaInt {
-    return dollaInt;
-}
-
-- (int) mainInt {
-    return mainInt;
 }
 
 @end

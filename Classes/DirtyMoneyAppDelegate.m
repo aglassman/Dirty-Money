@@ -62,24 +62,14 @@
 
 -(void)applicationWillResignActive:(UIApplication *)application {
     
-    closeTime = [[NSDate date]retain];
 
-    NSUserDefaults *defaultsCloseTime;
-	[defaultsCloseTime setInteger:closeTime forKey:@"closeTimeKey"];
-	[defaultsCloseTime synchronize];
     
 }
 
 -(void)applicationWillEnterForeground:(UIApplication *)application {
     
-    closeTime = [[NSUserDefaults standardUserDefaults] integerForKey:@"closeTimeKey"];
- 
-    timeInterval = [closeTime timeIntervalSinceNow] * -100;
     
-}
-
-- (NSTimeInterval)timeInterval {
-    return timeInterval;
+    
 }
 
 
