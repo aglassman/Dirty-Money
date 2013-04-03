@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIButton+Glossy.h"
 #import "DirtyMoneyAppDelegate.h"
+#import <iAd/iAd.h>
+
 
 @interface DirtyMoneyViewController()
 @end
@@ -19,10 +21,14 @@
 @synthesize hourlyRate;
 @synthesize start, stop, fbButton, clearLifeTotal;
 @synthesize dollaFloat;
+@synthesize contentView = _contentView;
+@synthesize adBannerView = _adBannerView;
+@synthesize adBannerViewIsVisible = _adBannerViewIsVisible;
 
 -(void)viewDidLoad  {
     
     [super viewDidLoad];
+    [self createAdBannerView];
     
     DirtyMoneyAppDelegate *delegate = (DirtyMoneyAppDelegate *)[UIApplication sharedApplication].delegate;
     
@@ -38,11 +44,14 @@
     slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
     pennySlider.value = [[NSUserDefaults standardUserDefaults] floatForKey:@"pennyRate"];
     
+
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated {
     
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    //[self refresh];
+    [self fixupAdView:[UIDevice currentDevice].orientation];
     
     NSArray *buttons = [NSArray arrayWithObjects: self.start, self.stop, self.fbButton, self.clearLifeTotal,nil];
     
@@ -108,11 +117,16 @@
 
 -(IBAction) pennySliderChanged:(id)sender {
     
-    hourlyRate.text =[[NSString alloc] initWithFormat:@"%0.2f", pennySlideValue+slideValue];
+    hourlyRate.text =[[NSString alloc] initWithFormat:@"%0.2f", slideValue+pennySlideValue];
     
     pennySlideValue = (float)(pennySlider.value);
     
     rate = [hourlyRate.text floatValue];
+    
+    stop.hidden = YES;
+	start.hidden = NO;
+	fbButton.hidden = YES;
+    clearLifeTotal.hidden = YES;
     
     defaultsRate = [NSUserDefaults standardUserDefaults];
     [defaultsRate setObject:hourlyRate.text forKey:@"rateKey"];
@@ -142,7 +156,7 @@
     
     interval = round([dateStart timeIntervalSinceNow]) *-1;
     
-	label.text = [NSString stringWithFormat:@"%f", interval];
+	label.text = [NSString stringWithFormat:@"%g", interval];
     
 	dollaFloat = (interval * rate / 36) / 100;
 	dollas.text = [NSString stringWithFormat:@"%02.2f", dollaFloat];
@@ -255,7 +269,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"Dirty Money", @"name",
                                    poopDollas, @"caption",
-                                   @"Dirty Money is an app that calcualtes how much money you make while rockin' a deuce at work.  What could be more glorious than that?  See how much you can make!", @"description",
+                                   @"Dirty Money is an app that calculates how much money you make while rockin' a deuce at work.  What could be more glorious than that?  See how much you can make!", @"description",
                                    @"http://www.facebook.com/pages/Dirty-Money/204640386301048", @"link",
                                    @"http://farm8.staticflickr.com/7185/6999841878_e66a8e00fc_t.jpg", @"picture",
                                    actionLinksStr, @"actions",
@@ -277,6 +291,95 @@
        return dollaFloat;
     }
 
+- (int)getBannerHeight:(UIDeviceOrientation)orientation {
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        return 32;
+    } else {
+        return 50;
+    }
+}
+
+- (int)getBannerHeight {
+    return [self getBannerHeight:[UIDevice currentDevice].orientation];
+}
+
+- (void)createAdBannerView {
+    Class classAdBannerView = NSClassFromString(@"ADBannerView");
+    if (classAdBannerView != nil) {
+        self.adBannerView = [[[classAdBannerView alloc]
+                              initWithFrame:CGRectZero] autorelease];
+        [_adBannerView setRequiredContentSizeIdentifiers:[NSSet setWithObjects:
+                        ADBannerContentSizeIdentifierLandscape,
+                        ADBannerContentSizeIdentifierPortrait, nil]];
+        if (UIInterfaceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+            [_adBannerView setCurrentContentSizeIdentifier:
+             ADBannerContentSizeIdentifierLandscape];
+        } else {
+            [_adBannerView setCurrentContentSizeIdentifier:
+             ADBannerContentSizeIdentifierPortrait];
+        }
+        [_adBannerView setFrame:CGRectOffset([_adBannerView frame], 0,
+                                             -[self getBannerHeight])];
+        [_adBannerView setDelegate:self];
+        
+        [self.view addSubview:_adBannerView];        
+    }
+}
+
+- (void)fixupAdView:(UIInterfaceOrientation)toInterfaceOrientation {
+    if (_adBannerView != nil) {
+        if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+            [_adBannerView setCurrentContentSizeIdentifier:
+             ADBannerContentSizeIdentifierLandscape];
+        } else {
+            [_adBannerView setCurrentContentSizeIdentifier:
+             ADBannerContentSizeIdentifierPortrait];
+        }
+        [UIView beginAnimations:@"fixupViews" context:nil];
+        if (_adBannerViewIsVisible) {
+            CGRect adBannerViewFrame = [_adBannerView frame];
+            adBannerViewFrame.origin.x = 0;
+            adBannerViewFrame.origin.y = 0;
+            [_adBannerView setFrame:adBannerViewFrame];
+            CGRect contentViewFrame = _contentView.frame;
+            contentViewFrame.origin.y =
+            [self getBannerHeight:toInterfaceOrientation];
+            contentViewFrame.size.height = self.view.frame.size.height -
+            [self getBannerHeight:toInterfaceOrientation];
+            _contentView.frame = contentViewFrame;
+        } else {
+            CGRect adBannerViewFrame = [_adBannerView frame];
+            adBannerViewFrame.origin.x = 0;
+            adBannerViewFrame.origin.y =
+            -[self getBannerHeight:toInterfaceOrientation];
+            [_adBannerView setFrame:adBannerViewFrame];
+            CGRect contentViewFrame = _contentView.frame;
+            contentViewFrame.origin.y = 0;
+            contentViewFrame.size.height = self.view.frame.size.height;
+            _contentView.frame = contentViewFrame;
+        }
+        [UIView commitAnimations];
+    }
+}
+
+#pragma mark ADBannerViewDelegate
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    if (!_adBannerViewIsVisible) {
+        _adBannerViewIsVisible = YES;
+        [self fixupAdView:[UIDevice currentDevice].orientation];
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    if (_adBannerViewIsVisible)
+    {
+        _adBannerViewIsVisible = NO;
+        [self fixupAdView:[UIDevice currentDevice].orientation];
+    }
+}
+
 -(void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -287,6 +390,8 @@
     [pennySlider release];
     [super dealloc];
     [hourlyRate release];
+    self.contentView = nil;
+    self.adBannerView = nil;
 }
 
 -(void)viewDidUnload {

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
+#import "iAd/ADBannerView.h"
 
 
-@interface DirtyMoneyViewController : UIViewController {
+@interface DirtyMoneyViewController : UIViewController
+<ADBannerViewDelegate> {
 
 	float dollaFloat, rate, floatTot, slideValue, pennySlideValue;
 	IBOutlet UILabel *lifeTotal;
@@ -25,6 +27,10 @@
     NSUserDefaults *defaultsRate;
     NSDate *dateStart;
     NSTimeInterval interval;
+    UIView *_contentView;
+    id _adBannerView;
+    BOOL _adBannerViewIsVisible;
+    
 }
 
 - (float) dollaFloat;
@@ -35,6 +41,9 @@
 - (IBAction) sliderChanged:(id)sender;
 - (IBAction) pennySliderChanged:(id)sender;
 
+@property (nonatomic, retain) IBOutlet UIView *contentView;
+@property (nonatomic, retain) id adBannerView;
+@property (nonatomic) BOOL adBannerViewIsVisible;
 @property (nonatomic, assign) float dollaFloat;
 @property (nonatomic, retain) IBOutlet UILabel *label;
 @property (nonatomic, retain) IBOutlet UILabel *dollas;
