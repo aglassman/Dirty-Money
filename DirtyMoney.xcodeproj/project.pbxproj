@@ -12,7 +12,7 @@
 		2899E5220DE3E06400AC0155 /* DirtyMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* DirtyMoneyViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* DirtyMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* DirtyMoneyViewController.m */; };
-		634D8BEB162D0DB800921CEF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 634D8BEA162D0DB800921CEF /* Default-568h@2x.png */; };
+		633B6256175E9DA3005D4365 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 633B6255175E9DA3005D4365 /* Default.png */; };
 		63659937155586750051931D /* Icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63659936155586750051931D /* Icon.jpg */; };
 		63D3AFC116CF45C300619FF9 /* sxytoilet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63D3AFC016CF45C300619FF9 /* sxytoilet.jpg */; };
 		63F46863151F7932009C1928 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F46858151F7932009C1928 /* NSObject+SBJSON.m */; };
@@ -48,7 +48,7 @@
 		32CA4F630368D1EE00C91783 /* DirtyMoney_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirtyMoney_Prefix.pch; sourceTree = "<group>"; };
 		6338108416CEF90A00D14380 /* UIButton+Glossy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIButton+Glossy.h"; path = "../../Downloads/UIButton-Glossy-master/UIButton+Glossy.h"; sourceTree = "<group>"; };
 		6338108516CEF90A00D14380 /* UIButton+Glossy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Glossy.m"; path = "../../Downloads/UIButton-Glossy-master/UIButton+Glossy.m"; sourceTree = "<group>"; };
-		634D8BEA162D0DB800921CEF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		633B6255175E9DA3005D4365 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		63659936155586750051931D /* Icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Icon.jpg; sourceTree = "<group>"; };
 		63D3AFC016CF45C300619FF9 /* sxytoilet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sxytoilet.jpg; sourceTree = "<group>"; };
 		63F46856151F7932009C1928 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				634D8BEA162D0DB800921CEF /* Default-568h@2x.png */,
+				633B6255175E9DA3005D4365 /* Default.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -256,8 +256,8 @@
 				2899E5220DE3E06400AC0155 /* DirtyMoneyViewController.xib in Resources */,
 				63F46877151F7974009C1928 /* FBDialog.bundle in Resources */,
 				63659937155586750051931D /* Icon.jpg in Resources */,
-				634D8BEB162D0DB800921CEF /* Default-568h@2x.png in Resources */,
 				63D3AFC116CF45C300619FF9 /* sxytoilet.jpg in Resources */,
+				633B6256175E9DA3005D4365 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,11 +328,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
@@ -342,11 +344,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};

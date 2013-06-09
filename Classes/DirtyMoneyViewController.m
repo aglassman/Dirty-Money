@@ -43,7 +43,6 @@
 	rate = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
     slider.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rateInt"];
     pennySlider.value = [[NSUserDefaults standardUserDefaults] floatForKey:@"pennyRate"];
-    
 
 }
 
@@ -139,6 +138,22 @@
 	
 	start = (UIButton *) sender;
 	
+    //message to set rate
+    if (rate == 0.00) {
+        
+        UIAlertView *instruct = [[UIAlertView alloc] initWithTitle:
+                                 @"Use the sliders to set your rate"
+                                 
+                                                           message:nil
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+        [instruct show];
+        [instruct release];
+        [instruct release];
+    }
+    else {
+    
 	stop.hidden = NO;
 	start.hidden = YES;
     fbButton.hidden = YES;
@@ -149,6 +164,7 @@
     randomMain = [NSTimer scheduledTimerWithTimeInterval:(1.0/1.0) target:self selector:@selector(randomMainVoid) userInfo:nil repeats:YES];
     
     dateStart = [[NSDate date]retain];
+    }
     
 }
 
@@ -184,12 +200,13 @@
 						  @"C'mon!"
 						  
 													message:message
-												   delegate:nil
-										  cancelButtonTitle:@"YES!"
-										  otherButtonTitles:nil];
+												   delegate:self
+										  cancelButtonTitle:@"Close"
+										  otherButtonTitles:@"Post to FaceBook",nil];
 	[alert show];
 	[alert release];
 	[message release];
+        
         
     }
 	
@@ -271,13 +288,64 @@
                                    poopDollas, @"caption",
                                    @"Dirty Money is an app that calculates how much money you make while rockin' a deuce at work.  What could be more glorious than that?  See how much you can make!", @"description",
                                    @"http://www.facebook.com/pages/Dirty-Money/204640386301048", @"link",
-                                   @"http://farm8.staticflickr.com/7185/6999841878_e66a8e00fc_t.jpg", @"picture",
+                                   @"http://coffeemillfontana.com/Coffee_Mill_Fontana/Blank_files/FBPostIcon.jpg", @"picture",
                                    actionLinksStr, @"actions",
                                    nil];
     
     FBDialog *delegate = (FBDialog *)[UIApplication sharedApplication].delegate;
     
     [facebook dialog:@"feed" andParams:params andDelegate:(id <FBDialogDelegate>)delegate];
+}
+
+
+//Alert View
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/FB buttons
+    if (buttonIndex == 1)
+    {
+        if (![facebook isSessionValid]) {
+            [facebook authorize:permissions];
+            [permissions release];
+        }
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults objectForKey:@"FBAccessTokenKey"]
+            && [defaults objectForKey:@"FBExpirationDateKey"]) {
+            facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+            facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+        }
+        
+        //Post to Wall
+        
+        NSString *poopDollas = [[NSString alloc] initWithFormat:
+                                @"I just made $%@ while using the Dirty Money app!",dollas.text];
+        
+        SBJSON *jsonWriter = [[SBJSON new] autorelease];
+        
+        // The action links to be shown with the post in the feed
+        NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          @"Get Started",@"name",@"http://www.facebook.com/pages/Dirty-Money/204640386301048",@"link", nil], nil];
+        NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
+        // Dialog parameters
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       @"Dirty Money", @"name",
+                                       poopDollas, @"caption",
+                                       @"Dirty Money is an app that calculates how much money you make while rockin' a deuce at work.  What could be more glorious than that?  See how much you can make!", @"description",
+                                       @"http://www.facebook.com/pages/Dirty-Money/204640386301048", @"link",
+                                       @"http://coffeemillfontana.com/Coffee_Mill_Fontana/Blank_files/FBPostIcon.jpg", @"picture",
+                                       actionLinksStr, @"actions",
+                                       nil];
+        
+        FBDialog *delegate = (FBDialog *)[UIApplication sharedApplication].delegate;
+        
+        [facebook dialog:@"feed" andParams:params andDelegate:(id <FBDialogDelegate>)delegate];
+        
+              }
+              else
+              {
+                  NSLog(@"cancel");
+              }
 }
 
 -(IBAction)clearLifeTotal:(id)sender {
@@ -341,13 +409,9 @@
             adBannerViewFrame.origin.x = 0;
             adBannerViewFrame.origin.y = 0;
             [_adBannerView setFrame:adBannerViewFrame];
-            CGRect contentViewFrame = _contentView.frame;
-            contentViewFrame.origin.y =
-            [self getBannerHeight:toInterfaceOrientation];
-            contentViewFrame.size.height = self.view.frame.size.height -
-            [self getBannerHeight:toInterfaceOrientation];
-            _contentView.frame = contentViewFrame;
-        } else {
+           }
+        
+        else {
             CGRect adBannerViewFrame = [_adBannerView frame];
             adBannerViewFrame.origin.x = 0;
             adBannerViewFrame.origin.y =
